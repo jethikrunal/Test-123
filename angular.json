@@ -1,0 +1,738 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "WovvIA-e2e": {
+      "root": "e2e/",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "e2e/protractor.conf.js",
+            "devServerTarget": "WovvIA:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "WovvIA:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "WovvTask": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "",
+      "sourceRoot": "projects/WovvTask/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/WovvTask",
+            "index": "projects/WovvTask/src/index.html",
+            "main": "projects/WovvTask/src/main.ts",
+            "polyfills": "projects/WovvTask/src/polyfills.ts",
+            "tsConfig": "projects/WovvTask/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "projects/WovvTask/src/favicon.ico",
+              {
+                "glob": "**/*",
+                "input": "src/assets/",
+                "output": "/assets/"
+              }
+            ],
+            "styles": [
+              "node_modules/devextreme/dist/css/dx.common.css",
+              "src/themes/generated/theme.base.css",
+              "src/themes/generated/theme.additional.css",
+              "src/dx-styles.scss",
+              "node_modules/bootstrap/dist/css/bootstrap.css",
+              "src/styles.scss",
+              "node_modules/font-awesome/css/font-awesome.css",
+              "node_modules/simple-line-icons/css/simple-line-icons.css"
+            ],
+            "scripts": [
+              "node_modules/jquery/dist/jquery.js",
+              "node_modules/popper.js/dist/umd/popper.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/WovvTask/src/environments/environment.ts",
+                  "with": "projects/WovvTask/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "WovvTask:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "WovvTask:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "WovvTask:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/WovvTask/src/test.ts",
+            "polyfills": "projects/WovvTask/src/polyfills.ts",
+            "tsConfig": "projects/WovvTask/tsconfig.spec.json",
+            "karmaConfig": "projects/WovvTask/karma.conf.js",
+            "assets": [
+              "projects/WovvTask/src/favicon.ico",
+              {
+                "glob": "**/*",
+                "input": "src/assets/",
+                "output": "/assets/"
+              }
+            ],
+            "styles": [
+              "node_modules/font-awesome/css/font-awesome.css",
+              "node_modules/simple-line-icons/css/simple-line-icons.css",
+              "src/scss/style.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/WovvTask/tsconfig.app.json",
+              "projects/WovvTask/tsconfig.spec.json",
+              "projects/WovvTask/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/WovvTask/e2e/protractor.conf.js",
+            "devServerTarget": "WovvTask:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "WovvTask:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "WovvIA": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "",
+      "sourceRoot": "projects/WovvIA/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/WovvIA",
+            "index": "projects/WovvIA/src/index.html",
+            "main": "projects/WovvIA/src/main.ts",
+            "polyfills": "projects/WovvIA/src/polyfills.ts",
+            "tsConfig": "projects/WovvIA/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "projects/WovvIA/src/favicon.ico",
+              {
+                "glob": "**/*",
+                "input": "src/assets/",
+                "output": "/assets/"
+              }
+            ],
+            "styles": [
+              "node_modules/devextreme/dist/css/dx.common.css",
+              "src/themes/generated/theme.base.css",
+              "src/themes/generated/theme.additional.css",
+              "src/dx-styles.scss",
+              "node_modules/bootstrap/dist/css/bootstrap.css",
+              "src/styles.scss",
+              "node_modules/font-awesome/css/font-awesome.css",
+              "node_modules/simple-line-icons/css/simple-line-icons.css"
+            ],
+            "scripts": [
+              "node_modules/chart.js/dist/Chart.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "node_modules/popper.js/dist/umd/popper.min.js",
+              "node_modules/jquery-bar-rating/dist/jquery.barrating.min.js",
+              "node_modules/emotion-ratings/dist/emotion-ratings.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/WovvIA/src/environments/environment.ts",
+                  "with": "projects/WovvIA/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "WovvIA:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "WovvIA:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "WovvIA:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/WovvIA/src/test.ts",
+            "polyfills": "projects/WovvIA/src/polyfills.ts",
+            "tsConfig": "projects/WovvIA/tsconfig.spec.json",
+            "karmaConfig": "projects/WovvIA/karma.conf.js",
+            "assets": [
+              "projects/WovvIA/src/favicon.ico",
+              "projects/WovvIA/src/assets"
+            ],
+            "styles": [
+              "projects/WovvIA/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/WovvIA/tsconfig.app.json",
+              "projects/WovvIA/tsconfig.spec.json",
+              "projects/WovvIA/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/WovvIA/e2e/protractor.conf.js",
+            "devServerTarget": "WovvIA:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "WovvIA:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "WovvContext": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "",
+      "sourceRoot": "projects/WovvContest/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/WovvContest",
+            "index": "projects/WovvContest/src/index.html",
+            "main": "projects/WovvContest/src/main.ts",
+            "polyfills": "projects/WovvContest/src/polyfills.ts",
+            "tsConfig": "projects/WovvContest/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "projects/WovvContest/src/favicon.ico",
+              {
+                "glob": "**/*",
+                "input": "src/assets/",
+                "output": "/assets/"
+              }
+            ],
+            "styles": [
+              "node_modules/devextreme/dist/css/dx.common.css",
+              "src/themes/generated/theme.base.css",
+              "src/themes/generated/theme.additional.css",
+              "src/dx-styles.scss",
+              "node_modules/bootstrap/dist/css/bootstrap.css",
+              "src/styles.scss",
+              "node_modules/font-awesome/css/font-awesome.css",
+              "node_modules/simple-line-icons/css/simple-line-icons.css"
+            ],
+            "scripts": [
+              "node_modules/chart.js/dist/Chart.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "node_modules/popper.js/dist/umd/popper.min.js",
+              "node_modules/jquery-bar-rating/dist/jquery.barrating.min.js",
+              "node_modules/emotion-ratings/dist/emotion-ratings.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/WovvContest/src/environments/environment.ts",
+                  "with": "projects/WovvContest/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "WovvContest:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "WovvContest:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "WovvContest:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/WovvContest/src/test.ts",
+            "polyfills": "projects/WovvContest/src/polyfills.ts",
+            "tsConfig": "projects/WovvContest/tsconfig.spec.json",
+            "karmaConfig": "projects/WovvContest/karma.conf.js",
+            "assets": [
+              "projects/WovvContest/src/favicon.ico",
+              "projects/WovvContest/src/assets"
+            ],
+            "styles": [
+              "projects/WovvContest/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/WovvContest/tsconfig.app.json",
+              "projects/WovvContest/tsconfig.spec.json",
+              "projects/WovvContest/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/WovvContest/e2e/protractor.conf.js",
+            "devServerTarget": "WovvContest:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "WovvContest:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "WovvRA": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "",
+      "sourceRoot": "projects/WovvRA/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/WovvRA",
+            "index": "projects/WovvRA/src/index.html",
+            "main": "projects/WovvRA/src/main.ts",
+            "polyfills": "projects/WovvRA/src/polyfills.ts",
+            "tsConfig": "projects/WovvRA/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "projects/WovvRA/src/favicon.ico",
+              {
+                "glob": "**/*",
+                "input": "src/assets/",
+                "output": "/assets/"
+              }
+            ],
+            "styles": [
+              "node_modules/devextreme/dist/css/dx.common.css",
+              "src/themes/generated/theme.base.css",
+              "src/themes/generated/theme.additional.css",
+              "src/dx-styles.scss",
+              "node_modules/bootstrap/dist/css/bootstrap.css",
+              "src/styles.scss",
+              "node_modules/font-awesome/css/font-awesome.css",
+              "node_modules/simple-line-icons/css/simple-line-icons.css"
+            ],
+            "scripts": [
+              "node_modules/chart.js/dist/Chart.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "node_modules/popper.js/dist/umd/popper.min.js",
+              "node_modules/jquery-bar-rating/dist/jquery.barrating.min.js",
+              "node_modules/emotion-ratings/dist/emotion-ratings.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/WovvRA/src/environments/environment.ts",
+                  "with": "projects/WovvRA/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "WovvRA:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "WovvRA:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "WovvRA:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/WovvRA/src/test.ts",
+            "polyfills": "projects/WovvRA/src/polyfills.ts",
+            "tsConfig": "projects/WovvRA/tsconfig.spec.json",
+            "karmaConfig": "projects/WovvRA/karma.conf.js",
+            "assets": [
+              "projects/WovvRA/src/favicon.ico",
+              "projects/WovvRA/src/assets"
+            ],
+            "styles": [
+              "projects/WovvRA/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/WovvRA/tsconfig.app.json",
+              "projects/WovvRA/tsconfig.spec.json",
+              "projects/WovvRA/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/WovvRA/e2e/protractor.conf.js",
+            "devServerTarget": "WovvRA:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "WovvRA:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "WovvDashboard": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "",
+      "sourceRoot": "projects/WovvDashboard/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/WovvDashboard",
+            "index": "projects/WovvDashboard/src/index.html",
+            "main": "projects/WovvDashboard/src/main.ts",
+            "polyfills": "projects/WovvDashboard/src/polyfills.ts",
+            "tsConfig": "projects/WovvDashboard/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "projects/WovvDashboard/src/favicon.ico",
+              {
+                "glob": "**/*",
+                "input": "src/assets/",
+                "output": "/assets/"
+              }
+            ],
+            "styles": [
+              "node_modules/devextreme/dist/css/dx.common.css",
+              "src/themes/generated/theme.base.css",
+              "src/themes/generated/theme.additional.css",
+              "src/dx-styles.scss",
+              "node_modules/bootstrap/dist/css/bootstrap.css",
+              "src/styles.scss",
+              "node_modules/font-awesome/css/font-awesome.css",
+              "node_modules/simple-line-icons/css/simple-line-icons.css"
+            ],
+            "scripts": [
+              "node_modules/chart.js/dist/Chart.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "node_modules/popper.js/dist/umd/popper.min.js",
+              "node_modules/jquery-bar-rating/dist/jquery.barrating.min.js",
+              "node_modules/emotion-ratings/dist/emotion-ratings.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/WovvDashboard/src/environments/environment.ts",
+                  "with": "projects/WovvDashboard/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "WovvDashboard:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "WovvDashboard:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "WovvDashboard:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/WovvDashboard/src/test.ts",
+            "polyfills": "projects/WovvDashboard/src/polyfills.ts",
+            "tsConfig": "projects/WovvDashboard/tsconfig.spec.json",
+            "karmaConfig": "projects/WovvDashboard/karma.conf.js",
+            "assets": [
+              "projects/WovvDashboard/src/favicon.ico",
+              "projects/WovvDashboard/src/assets"
+            ],
+            "styles": [
+              "projects/WovvDashboard/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/WovvDashboard/tsconfig.app.json",
+              "projects/WovvDashboard/tsconfig.spec.json",
+              "projects/WovvDashboard/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/WovvDashboard/e2e/protractor.conf.js",
+            "devServerTarget": "WovvDashboard:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "WovvDashboard:serve:production"
+            }
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "WovvIA",
+  "cli": {
+    "analytics": "f433e0ca-34e5-4108-bfdc-184fd55bb9bb"
+  }
+}
